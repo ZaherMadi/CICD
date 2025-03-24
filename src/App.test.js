@@ -5,6 +5,6 @@ import App from './App';
 describe('App Component', () => {
   test('renders the App component without crashing', () => {
     render(<App />);
-    expect(screen.getByText(/Formulaire/i)).toBeInTheDocument();
+    expect(screen.getByText(/Mon Formulaire/i)).toBeInTheDocument();
   });
 });
