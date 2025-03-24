@@ -1,8 +1,16 @@
+import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+describe('App Component', () => {
+  test('renders the App component without crashing', () => {
+    render(<App />);
+    expect(screen.getByText(/Mon Formulaire/i)).toBeInTheDocument();
+  });
+
+  test('renders the Formulaire component', () => {
+    render(<App />);
+    const formulaireElement = screen.getByRole('form'); // Assuming Formulaire has a role="form"
+    expect(formulaireElement).toBeInTheDocument();
+  });
 });
