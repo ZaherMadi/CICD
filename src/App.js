@@ -3,7 +3,7 @@ import Formulaire from "./Formulaire";
 function App() {
   return (
     <div className="App">
-      <h1>Mon Formulaire</h1>
+      <h1>Formulaire</h1>
       <Formulaire />
     </div>
   );
