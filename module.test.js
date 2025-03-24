@@ -1,4 +1,4 @@
-import { calculateAge } from './module';
+import { calculateAge } from '../module';
 
 /**
  * @function calculateAge
