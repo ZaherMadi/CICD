@@ -3,21 +3,23 @@
   "version": "0.1.0",
   "homepage": "https://zahermadi.github.io/CICD/",
   "private": true,
+  "type": "module",
   "dependencies": {
     "cra-template": "1.2.0",
     "r": "^0.0.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "web-vitals": "^4.2.4"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --coverage --collectCoverageFrom=src/**/*.{js,jsx,ts,tsx} --collectCoverageFrom=!src/reportWebVitals.js --collectCoverageFrom=!src/index.js",
+    "build": "rimraf dist && react-scripts build",
+    "test": "react-scripts test --watchAll=false --coverage --collectCoverageFrom=src/**/*.{js,jsx,ts,tsx} --collectCoverageFrom=!src/reportWebVitals.js --collectCoverageFrom=!src/index.js",
     "eject": "react-scripts eject",
     "deploy": "gh-pages -d build",
-    "predeploy": "npm run build"
+    "predeploy": "npm run build",
+    "build-npm": "SET NODE_ENV=production && rm -rf dist && mkdir dist && npx babel src --out-dir dist --copy-files"
   },
   "eslintConfig": {
     "extends": [
@@ -38,8 +40,18 @@
     ]
   },
   "devDependencies": {
+    "@babel/cli": "^7.27.0",
+    "@babel/core": "^7.26.10",
+    "@babel/plugin-syntax-jsx": "^7.25.9",
+    "@babel/plugin-transform-react-jsx": "^7.25.9",
+    "@babel/preset-env": "^7.26.9",
+    "@babel/preset-react": "^7.26.3",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
-    "gh-pages": "^6.3.0"
+    "babel-core": "^6.26.3",
+    "babel-jest": "^29.7.0",
+    "gh-pages": "^6.3.0",
+    "identity-obj-proxy": "^3.0.0",
+    "rimraf": "^6.0.1"
   }
 }

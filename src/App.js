@@ -1,5 +1,6 @@
 import React from 'react';
-import Formulaire from "./Formulaire";
+import Formulaire from './Formulaire.jsx'
+
 function App() {
   return (
     <div className="App">

@@ -14,3 +14,5 @@ function calculateAge(p){
 
 }
 
+module.exports = { calculateAge };
+
