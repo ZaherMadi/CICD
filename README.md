@@ -73,5 +73,4 @@ Le site est automatiquement déployé sur :
 
 ## Auteur
 
-- Zaher Islah Madi
-- Étudiant en M1 - Smart Energy
+- Zaher Islah Madi - M1 DEV - SOPHIA YNOV CAMPUS
