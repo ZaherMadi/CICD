@@ -82,7 +82,7 @@ const Formulaire = () => {
   };
 
   return (
-    <form role="form" onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <div>
         <label htmlFor="lastName">Nom :</label>
         <input id="lastName" type="text" name="lastName" value={formData.lastName} onChange={handleChange} />
@@ -113,7 +113,7 @@ const Formulaire = () => {
         <input id="email" type="email" name="email" value={formData.email} onChange={handleChange} />
         {errors.email && <span style={{ color: "red" }}>{errors.email}</span>}
       </div>
-      <button role="button" type="submit" disabled={Object.values(errors).some((err) => err !== "") || Object.values(formData).some((val) => val.trim() === "")}>
+      <button type="submit" disabled={Object.values(errors).some((err) => err !== "") || Object.values(formData).some((val) => val.trim() === "")}>
         Soumettre
       </button>
     </form>
