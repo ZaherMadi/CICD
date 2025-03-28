@@ -56,14 +56,16 @@ jobs:
             git add dist
             git commit -m "ci: add compiled dist before publish" || echo "Nothing to commit"
 
-
+        - name: Authentifier NPM
+          run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+        
         - name: build and publish package on NPM 
           run : |
             git config --global user.email "zahermadi@yahoo.fr"
             git config --global user.name "Zaher Madi"
             npm run build-npm
             npm version patch
-            npm publish
+            npm publish --access public
 
           env:
             NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
