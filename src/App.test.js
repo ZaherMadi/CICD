@@ -81,3 +81,4 @@ describe('Formulaire Component', () => {
     expect(saved).toEqual(validFormData);
   });
 });
+

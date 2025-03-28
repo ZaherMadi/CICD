@@ -48,6 +48,8 @@ const Formulaire = () => {
         newErrors[name] = validateDateOfBirth(cleanedValue) ? "" : "Vous devez avoir plus de 18 ans";
         console.log(`🎂 [validateDateOfBirth] "${cleanedValue}" => ${validateDateOfBirth(cleanedValue)}`);
         break;
+      default:
+        
     }
 
     setErrors(newErrors);
@@ -69,9 +71,7 @@ const Formulaire = () => {
 
     console.log("📛 [Résultat validation finale]:", newErrors);
 
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-    } else {
+    if (Object.keys(newErrors).length === 0) {
       alert("✅ Inscription réussie !");
       setErrors({});
       localStorage.setItem("Formulaire", JSON.stringify(formData)); 
