@@ -53,6 +53,9 @@ Le site est automatiquement déployé sur :
 
 > Le déploiement est fait à chaque push sur `main` via GitHub Actions.
 
+## Nom de version
+PS: Le versionnage commence réellement à la version 2, avant cela je n'avais pas encore compris la notion de major minor patch. Donc je mettais des numéros au hasard.
+Prenez donc compte de la version 4 en tant que version 1 obsolète. Le projet démarre proprement à la version 2.
 
 ## Arborescence du projet
 
