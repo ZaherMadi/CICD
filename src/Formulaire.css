@@ -3,14 +3,45 @@ body {
 }
 
 form {
-    max-width: 600px;
+    max-width: 700px;
     margin: 0 auto;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 10px;
-    background-color: #f9f9f9;
+    background-color: #ded3d3;
+    box-shadow: rgba(0, 0, 0, 0.852) 0px 5px 15px;
+    
 }
 
 div {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
+}
+
+input{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+button{ 
+    background-color: #ffffff; /* Green */
+    border: none;
+    color: rgba(0, 0, 0, 0.774);
+    padding: 10px 26px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: #ddd; /* Darker green on hover */
+    color: rgb(15, 13, 13);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }

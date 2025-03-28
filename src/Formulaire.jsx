@@ -76,46 +76,53 @@ const Formulaire = () => {
     } else {
       alert("✅ Inscription réussie !");
       setErrors({});
-      // localStorage.setItem("Formulaire", JSON.stringify(formData)); // Pas demandé mais au moins c'est stocké
       setFormData({ firstName: "", lastName: "", birthDate: "", postalCode: "", city: "", email: "" });
     }
   };
 
   return (
     <form data-testid="formulaire" onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="lastName">Nom :</label>
-        <input id="lastName" type="text" name="lastName" value={formData.lastName} onChange={handleChange} />
-        {errors.lastName && <span style={{ color: "red" }}>{errors.lastName}</span>}
+      <div style={{ display: "flex", flexDirection: "row", gap: "10px" }}>
+        <div style={{ flex: 1, display: "flex", gap: "10px" }}>
+          <label htmlFor="lastName">Nom :</label>
+          <input id="lastName" type="text" name="lastName" value={formData.lastName} onChange={handleChange} />
+          {errors.lastName && <span style={{ color: "red" }}>{errors.lastName}</span>}
+        </div>
+        <div style={{ flex: 1, display: "flex", gap: "10px" }}>
+          <label htmlFor="firstName">Prénom :</label>
+          <input id="firstName" type="text" name="firstName" value={formData.firstName} onChange={handleChange} />
+          {errors.firstName && <span style={{ color: "red" }}>{errors.firstName}</span>}
+        </div>
       </div>
-      <div>
-        <label htmlFor="firstName">Prénom :</label>
-        <input id="firstName" type="text" name="firstName" value={formData.firstName} onChange={handleChange} />
-        {errors.firstName && <span style={{ color: "red" }}>{errors.firstName}</span>}
+      <div style={{ display: "flex", flexDirection: "row", gap: "10px" }}>
+        <div style={{ flex: 1, display: "flex", gap: "10px" }}>
+          <label htmlFor="birthDate">Date de naissance :</label>
+          <input id="birthDate" type="date" name="birthDate" value={formData.birthDate} onChange={handleChange} />
+          {errors.birthDate && <span style={{ color: "red" }}>{errors.birthDate}</span>}
+        </div>
+        <div  style={{ flex: 1, display: "flex", gap: "10px" }}>
+          <label htmlFor="postalCode">Code Postal :</label>
+          <input id="postalCode" type="text" name="postalCode" value={formData.postalCode} onChange={handleChange} />
+          {errors.postalCode && <span style={{ color: "red" }}>{errors.postalCode}</span>}
+        </div>
       </div>
-      <div>
-        <label htmlFor="birthDate">Date de naissance :</label>
-        <input id="birthDate" type="date" name="birthDate" value={formData.birthDate} onChange={handleChange} />
-        {errors.birthDate && <span style={{ color: "red" }}>{errors.birthDate}</span>}
-      </div>
-      <div>
-        <label htmlFor="postalCode">Code Postal :</label>
-        <input id="postalCode" type="text" name="postalCode" value={formData.postalCode} onChange={handleChange} />
-        {errors.postalCode && <span style={{ color: "red" }}>{errors.postalCode}</span>}
-      </div>
-      <div>
-        <label htmlFor="city">Ville :</label>
-        <input id="city" type="text" name="city" value={formData.city} onChange={handleChange} />
-        {errors.city && <span style={{ color: "red" }}>{errors.city}</span>}
-      </div>
-      <div>
-        <label htmlFor="email" >Email :</label>
-        <input id="email" type="email" name="email" value={formData.email} onChange={handleChange} />
-        {errors.email && <span style={{ color: "red" }}>{errors.email}</span>}
-      </div>
+      <div style={{ display: "flex", flexDirection: "row", gap: "10px" }}>
+        <div style={{ flex: 1, display: "flex", gap: "10px" }}>
+          <label htmlFor="city">Ville :</label>
+          <input id="city" type="text" name="city" value={formData.city} onChange={handleChange} />
+          {errors.city && <span style={{ color: "red" }}>{errors.city}</span>}
+        </div>
+        <div style={{ flex: 1, display: "flex", gap: "10px" }}>
+          <label htmlFor="email" >Email :</label>
+          <input id="email" type="email" name="email" value={formData.email} onChange={handleChange} />
+          {errors.email && <span style={{ color: "red" }}>{errors.email}</span>}
+        </div>
+        </div>
+        <div style={{ textAlign: "center", marginTop: "20px" }}>
       <button type="submit" disabled={Object.values(errors).some((err) => err !== "") || Object.values(formData).some((val) => val.trim() === "")}>
         Soumettre
       </button>
+      </div>
     </form>
   );
 };
