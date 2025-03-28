@@ -20,6 +20,7 @@
     "predeploy": "npm run build",
     "build-npm": "SET NODE_ENV=production && rm -rf dist && mkdir dist && npx babel src --out-dir dist --copy-files"
   },
+  
   "eslintConfig": {
     "extends": [
       "react-app",
