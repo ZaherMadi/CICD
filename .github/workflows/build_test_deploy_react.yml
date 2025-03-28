@@ -49,6 +49,14 @@ jobs:
           with:
             token: ${{ secrets.CODECOV_TOKEN }}
 
+        - name: Commit build files
+          run: |
+            git config --global user.email "zahermadi@yahoo.fr"
+            git config --global user.name "Zaher Madi"
+            git add dist
+            git commit -m "ci: add compiled dist before publish" || echo "Nothing to commit"
+
+
         - name: build and publish package on NPM 
           run : |
             git config --global user.email "zahermadi@yahoo.fr"
