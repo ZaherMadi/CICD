@@ -53,12 +53,6 @@ Le site est automatiquement déployé sur :
 
 > Le déploiement est fait à chaque push sur `main` via GitHub Actions.
 
-## Résolution des erreurs ESLint
-
-Certaines règles d’accessibilité (a11y) ont été suivies, notamment :
-
-- Suppression des `role` implicites sur les balises (`form`, `button`)
-- Utilisation de `data-testid` pour simplifier les tests unitaires
 
 ## Arborescence du projet
 
