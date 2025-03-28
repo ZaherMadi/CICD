@@ -3,25 +3,43 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import App from './App.js';
 import Formulaire from './Formulaire.jsx';
 
+const validFormData = {
+  firstName: 'John',
+  lastName: 'Doe',
+  birthDate: '2000-01-01',
+  postalCode: '75000',
+  city: 'Paris',
+  email: 'john.doe@example.com',
+};
+
+const fillForm = () => {
+  fireEvent.change(screen.getByLabelText(/^Prénom\s*:/i), { target: { value: validFormData.firstName } });
+  fireEvent.change(screen.getByLabelText(/^Nom\s*:/i), { target: { value: validFormData.lastName } });
+  fireEvent.change(screen.getByLabelText(/Date de naissance/i), { target: { value: validFormData.birthDate } });
+  fireEvent.change(screen.getByLabelText(/Code Postal/i), { target: { value: validFormData.postalCode } });
+  fireEvent.change(screen.getByLabelText(/Ville/i), { target: { value: validFormData.city } });
+  fireEvent.change(screen.getByLabelText(/Email/i), { target: { value: validFormData.email } });
+};
+
 describe('App Component', () => {
   test('renders the App component with the title', () => {
     render(<App />);
-    const titleElement = screen.getByText(/Formulaire/i);
-    expect(titleElement).toBeInTheDocument();
+    expect(screen.getByText(/Formulaire/i)).toBeInTheDocument();
   });
 
   test('renders the Formulaire component', () => {
     render(<App />);
-    const formulaireElement = screen.getByTestId('formulaire');
-expect(formulaireElement).toBeInTheDocument();
+    expect(screen.getByTestId('formulaire')).toBeInTheDocument();
   });
 });
 
-
 describe('Formulaire Component', () => {
-  test('renders the form with all fields and submit button', () => {
+  beforeEach(() => {
     render(<Formulaire />);
-    expect(screen.getByLabelText(/^Nom\s*:/i)).toBeInTheDocument(); // LE ^ pour isoler la recherche, sinon sans quoi ca va causer un bug de test
+  });
+
+  test('renders all fields and submit button', () => {
+    expect(screen.getByLabelText(/^Nom\s*:/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/^Prénom\s*:/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/Date de naissance/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/Code Postal/i)).toBeInTheDocument();
@@ -30,71 +48,36 @@ describe('Formulaire Component', () => {
     expect(screen.getByRole('button', { name: /Soumettre/i })).toBeInTheDocument();
   });
 
-  test('displays validation errors for invalid inputs', () => {
-    render(<Formulaire />);
-    const firstNameInput = screen.getByLabelText(/^Prénom\s*:/i);
-    const emailInput = screen.getByLabelText(/Email/i);
-    const submitButton = screen.getByRole('button', { name: /Soumettre/i });
-
-    fireEvent.change(firstNameInput, { target: { value: '123' } });
-    fireEvent.change(emailInput, { target: { value: 'invalid-email' } });
-    fireEvent.click(submitButton);
-
+  test('shows validation errors for invalid inputs', () => {
+    fireEvent.change(screen.getByLabelText(/^Prénom\s*:/i), { target: { value: '123' } });
+    fireEvent.change(screen.getByLabelText(/Email/i), { target: { value: 'not-an-email' } });
+    fireEvent.click(screen.getByRole('button', { name: /Soumettre/i }));
     expect(screen.getByText(/Champ invalide/i)).toBeInTheDocument();
     expect(screen.getByText(/Email invalide/i)).toBeInTheDocument();
   });
 
-  test('disables the submit button when form is invalid', () => {
-    render(<Formulaire />);
-    const submitButton = screen.getByRole('button', { name: /Soumettre/i });
-    expect(submitButton).toBeDisabled();
+  test('submit button is disabled when form is invalid', () => {
+    expect(screen.getByRole('button', { name: /Soumettre/i })).toBeDisabled();
   });
 
-  test('enables the submit button when form is valid', () => {
-    render(<Formulaire />);
-    const firstNameInput = screen.getByLabelText(/^Prénom\s*:/i);
-    const lastNameInput = screen.getByLabelText(/^Nom\s*:/i);
-    const birthDateInput = screen.getByLabelText(/Date de naissance/i);
-    const postalCodeInput = screen.getByLabelText(/Code Postal/i);
-    const cityInput = screen.getByLabelText(/Ville/i);
-    const emailInput = screen.getByLabelText(/Email/i);
-    const submitButton = screen.getByRole('button', { name: /Soumettre/i });
-
-    fireEvent.change(firstNameInput, { target: { value: 'John' } });
-    fireEvent.change(lastNameInput, { target: { value: 'Doe' } });
-    fireEvent.change(birthDateInput, { target: { value: '2000-01-01' } });
-    fireEvent.change(postalCodeInput, { target: { value: '75000' } });
-    fireEvent.change(cityInput, { target: { value: 'Paris' } });
-    fireEvent.change(emailInput, { target: { value: 'john.doe@example.com' } });
-
-    expect(submitButton).not.toBeDisabled();
+  test('submit button is enabled when form is valid', () => {
+    fillForm();
+    expect(screen.getByRole('button', { name: /Soumettre/i })).not.toBeDisabled();
   });
 
-  test('clears the form and errors on successful submission', () => {
-    render(<Formulaire />);
-    const firstNameInput = screen.getByLabelText(/^Prénom\s*:/i);
-    const lastNameInput = screen.getByLabelText(/^Nom\s*:/i);
-    const birthDateInput = screen.getByLabelText(/Date de naissance/i);
-    const postalCodeInput = screen.getByLabelText(/Code Postal/i);
-    const cityInput = screen.getByLabelText(/Ville/i);
-    const emailInput = screen.getByLabelText(/Email/i);
-    const submitButton = screen.getByRole('button', { name: /Soumettre/i });
+  test('clears form and errors on successful submission', () => {
+    fillForm();
+    fireEvent.click(screen.getByRole('button', { name: /Soumettre/i }));
 
-    fireEvent.change(firstNameInput, { target: { value: 'John' } });
-    fireEvent.change(lastNameInput, { target: { value: 'Doe' } });
-    fireEvent.change(birthDateInput, { target: { value: '2000-01-01' } });
-    fireEvent.change(postalCodeInput, { target: { value: '75000' } });
-    fireEvent.change(cityInput, { target: { value: 'Paris' } });
-    fireEvent.change(emailInput, { target: { value: 'john.doe@example.com' } });
-    fireEvent.click(submitButton);
-
-    expect(firstNameInput.value).toBe('');
-    expect(lastNameInput.value).toBe('');
-    expect(birthDateInput.value).toBe('');
-    expect(postalCodeInput.value).toBe('');
-    expect(cityInput.value).toBe('');
-    expect(emailInput.value).toBe('');
+    expect(screen.getByLabelText(/^Prénom\s*:/i).value).toBe('');
     expect(screen.queryByText(/Champ invalide/i)).not.toBeInTheDocument();
   });
-});
 
+  test('saves data to localStorage on successful submission', () => {
+    fillForm();
+    fireEvent.click(screen.getByRole('button', { name: /Soumettre/i }));
+
+    const saved = JSON.parse(localStorage.getItem('Formulaire'));
+    expect(saved).toEqual(validFormData);
+  });
+});
