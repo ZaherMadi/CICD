@@ -1,5 +1,5 @@
 {
-  "name": "cicd",
+  "name": "ZaherMadicicd",
   "version": "0.1.0",
   "homepage": "https://zahermadi.github.io/CICD/",
   "private": true,
@@ -20,7 +20,6 @@
     "predeploy": "npm run build",
     "build-npm": "SET NODE_ENV=production && rm -rf dist && mkdir dist && npx babel src --out-dir dist --copy-files",
     "jsdoc": "jsdoc -R ./README.md -c ./jsdoc.config.json -r -d ./public/docs"
-
   },
   "eslintConfig": {
     "extends": [

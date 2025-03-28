@@ -1,0 +1,13 @@
+
+body {
+  background-color: #282c34;
+  color: rgba(0, 0, 0, 0.774);
+  font-family: 'Courier New', Courier, monospace;
+  text-align: center;
+}
+
+h1{
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 22px;
+  color: rgb(255, 255, 255);
+}
