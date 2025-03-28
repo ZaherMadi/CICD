@@ -12,8 +12,8 @@ describe('App Component', () => {
 
   test('renders the Formulaire component', () => {
     render(<App />);
-    const formulaireElement = screen.getByRole('form'); // Assuming Formulaire has a role="form"
-    expect(formulaireElement).toBeInTheDocument();
+    const formulaireElement = screen.getByTestId('formulaire');
+expect(formulaireElement).toBeInTheDocument();
   });
 });
 
