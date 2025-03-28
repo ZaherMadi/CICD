@@ -97,3 +97,4 @@ describe('Formulaire Component', () => {
     expect(screen.queryByText(/Champ invalide/i)).not.toBeInTheDocument();
   });
 });
+
