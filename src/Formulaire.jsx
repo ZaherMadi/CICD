@@ -82,7 +82,7 @@ const Formulaire = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form data-testid="formulaire" onSubmit={handleSubmit}>
       <div>
         <label htmlFor="lastName">Nom :</label>
         <input id="lastName" type="text" name="lastName" value={formData.lastName} onChange={handleChange} />
