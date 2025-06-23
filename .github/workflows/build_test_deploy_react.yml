@@ -59,18 +59,18 @@ jobs:
         - name: Authentifier NPM
           run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
         
-        - name: build and publish package on NPM
-          run: |
-            git config --global user.email "zahermadi@yahoo.fr"
-            git config --global user.name "Zaher Madi"
-            npm run build-npm
-            npm version patch --force
-            git add package.json package-lock.json
-            git commit -m "ci: bump version" || echo "Nothing to commit"
+        # - name: build and publish package on NPM
+        #   run: |
+        #     git config --global user.email "zahermadi@yahoo.fr"
+        #     git config --global user.name "Zaher Madi"
+        #     npm run build-npm
+        #     npm version patch --force
+        #     git add package.json package-lock.json
+        #     git commit -m "ci: bump version" || echo "Nothing to commit"
            
-            npm publish --access public
-          env:
-            NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        #     npm publish --access public
+        #   env:
+        #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   # Deploy job  
    deploy:    
