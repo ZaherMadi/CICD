@@ -67,7 +67,7 @@ jobs:
             npm version patch --force
             git add package.json package-lock.json
             git commit -m "ci: bump version" || echo "Nothing to commit"
-            git push # if you want to push the version bump
+           
             npm publish --access public
           env:
             NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
