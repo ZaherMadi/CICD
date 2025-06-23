@@ -72,11 +72,35 @@ const Formulaire = () => {
     console.log("📛 [Résultat validation finale]:", newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      alert("✅ Inscription réussie !");
-      setErrors({});
-      localStorage.setItem("Formulaire", JSON.stringify(formData)); 
-      setFormData({ firstName: "", lastName: "", birthDate: "", postalCode: "", city: "", email: "" });
-    }
+  alert("✅ Inscription réussie !");
+  setErrors({});
+  localStorage.setItem("Formulaire", JSON.stringify(formData));
+
+  
+  fetch("http://localhost:8000/users", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: new URLSearchParams(formData),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log("✅ Réponse API :", data);
+    })
+    .catch((err) => {
+      console.error("❌ Erreur d'envoi à l’API :", err);
+    });
+
+  setFormData({
+    firstName: "",
+    lastName: "",
+    birthDate: "",
+    postalCode: "",
+    city: "",
+    email: "",
+  });
+}
   };
 
   return (
