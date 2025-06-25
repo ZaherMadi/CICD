@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { validateName, validateEmail, validatePostalCode, validateDateOfBirth } from "./validation.js";
 import "./Formulaire.css";
-import { useNavigate } from "react-router-dom";
+
+import { useNavigate } from 'react-router-dom';
 
 
 const Formulaire = () => {

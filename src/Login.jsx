@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Formulaire.css";
-import { useNavigate } from "react-router-dom";
+
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState("");
