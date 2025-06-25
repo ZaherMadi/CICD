@@ -3,6 +3,8 @@ import { validateName, validateEmail, validatePostalCode, validateDateOfBirth } 
 import "./Formulaire.css";
 import { useNavigate } from "react-router-dom";
 
+const navigate = useNavigate();
+
 const Formulaire = () => {
   const [formData, setFormData] = useState({
     firstName: "",
