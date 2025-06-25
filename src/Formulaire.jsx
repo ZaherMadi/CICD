@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { validateName, validateEmail, validatePostalCode, validateDateOfBirth } from "./validation.js";
 import "./Formulaire.css";
-
+import { useNavigate } from "react-router-dom";
 
 const Formulaire = () => {
   const [formData, setFormData] = useState({
@@ -77,20 +77,25 @@ const Formulaire = () => {
   localStorage.setItem("Formulaire", JSON.stringify(formData));
 
   
-  fetch("http://localhost:8000/users", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: new URLSearchParams(formData),
+  const apiUrl =
+  window.location.hostname === "localhost"
+    ? "http://localhost:8000/users"
+    : "https://cicd-part2.vercel.app/users";
+
+fetch(apiUrl, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/x-www-form-urlencoded",
+  },
+  body: new URLSearchParams(formData),
+})
+  .then((res) => res.json())
+  .then((data) => {
+    console.log("✅ Réponse API :", data);
   })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log("✅ Réponse API :", data);
-    })
-    .catch((err) => {
-      console.error("❌ Erreur d'envoi à l’API :", err);
-    });
+  .catch((err) => {
+    console.error("❌ Erreur d'envoi à l’API :", err);
+  });
 
   setFormData({
     firstName: "",
@@ -146,6 +151,12 @@ const Formulaire = () => {
         Soumettre
       </button>
       </div>
+      <div style={{ textAlign: "right", marginBottom: "15px" }}>
+  <button type="button" onClick={navigate("/users")} style={{ marginRight: "10px" }}>
+    📋 Liste des utilisateurs
+  </button>
+</div>
+
     </form>
   );
 };
