@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import App from './App.js';
 import Formulaire from './Formulaire.jsx';
-import { validateDateOfBirth } from './validation';
+import { validateDateOfBirth } from './validation.js';
 
 
 test.skip('returns false for future birth date', () => {
