@@ -152,7 +152,7 @@ fetch(apiUrl, {
       </button>
       </div>
       <div style={{ textAlign: "right", marginBottom: "15px" }}>
-  <button type="button" onClick={navigate("/users")} style={{ marginRight: "10px" }}>
+  <button type="button" onClick={() => navigate("/users")} style={{ marginRight: "10px" }}>
     📋 Liste des utilisateurs
   </button>
 </div>
