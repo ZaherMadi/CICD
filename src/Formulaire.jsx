@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { validateName, validateEmail, validatePostalCode, validateDateOfBirth } from "./validation.js";
 import "./Formulaire.css";
 
-import { useNavigate } from "react-router-dom";
-
 
 const Formulaire = () => {
   const [formData, setFormData] = useState({
@@ -16,7 +14,6 @@ const Formulaire = () => {
   });
 
   const [errors, setErrors] = useState({});
-  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -79,13 +76,8 @@ const Formulaire = () => {
   setErrors({});
   localStorage.setItem("Formulaire", JSON.stringify(formData));
 
-  
-  const apiUrl =
-  window.location.hostname === "localhost"
-    ? "http://localhost:8000/users"
-    : "https://cicd-part2.vercel.app/users";
 
-fetch(apiUrl, {
+fetch("https://cicd-part2.vercel.app/users", {
   method: "POST",
   headers: {
     "Content-Type": "application/x-www-form-urlencoded",
@@ -154,12 +146,6 @@ fetch(apiUrl, {
         Soumettre
       </button>
       </div>
-      <div style={{ textAlign: "right", marginBottom: "15px" }}>
-  <button type="button" onClick={() => navigate("/users")} style={{ marginRight: "10px" }}>
-    📋 Liste des utilisateurs
-  </button>
-</div>
-
     </form>
   );
 };
