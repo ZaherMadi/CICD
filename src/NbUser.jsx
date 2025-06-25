@@ -5,7 +5,7 @@ function UsersCount() {
   const [count, setCount] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:8000/users')
+    fetch('https://cicd-part2.vercel.app/users')
       .then(res => res.json())
       .then(data => {
           console.log("Réponse de l'API :", data); // AJOUTE ÇA
