@@ -3,8 +3,7 @@ import Login from "./Login";
 import UserListAdmin from "./UserListAdmin";
 import UserList from "./UserList";
 import "./App.css";
-import "react-router-dom";
-
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 function App() {
   return (
     <Router>
