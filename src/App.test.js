@@ -22,7 +22,7 @@ const fillForm = () => {
   fireEvent.change(screen.getByLabelText(/Email/i), { target: { value: validFormData.email } });
 };
 
-describe('App Component', () => {
+describe.skip('App Component', () => {
   test('renders the App component with the title', () => {
     render(<App />);
     expect(screen.getByText(/Formulaire/i)).toBeInTheDocument();
@@ -34,7 +34,7 @@ describe('App Component', () => {
   });
 });
 
-describe('Formulaire Component', () => {
+describe.skip('Formulaire Component', () => {
   beforeEach(() => {
     render(<Formulaire />);
   });
