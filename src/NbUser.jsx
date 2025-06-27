@@ -9,7 +9,12 @@ function UsersCount() {
       .then(res => res.json())
       .then(data => {
           console.log("Réponse de l'API :", data); 
-        setCount(data.Utilisateurs.length);
+        if (data && Array.isArray(data.Utilisateurs)) {
+  setCount(data.Utilisateurs.length);
+} else {
+  console.error("⚠️ data.Utilisateurs undefined ou non-array :", data);
+  setCount(0); // ou null selon ton UX
+}
       })
       .catch(err => {
         console.error("Erreur API :", err);
