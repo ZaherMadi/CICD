@@ -8,8 +8,8 @@ function UsersCount() {
     fetch('https://cicd-part2.vercel.app/users')
       .then(res => res.json())
       .then(data => {
-          console.log("Réponse de l'API :", data); // AJOUTE ÇA
-        setCount(data.utilisateurs.length);
+          console.log("Réponse de l'API :", data); 
+        setCount(data.Utilisateurs.length);
       })
       .catch(err => {
         console.error("Erreur API :", err);
